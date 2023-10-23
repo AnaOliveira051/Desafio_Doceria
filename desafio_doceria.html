@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doceria</title>
+</head>
+<body>
+    Quantidade de Macarons a serem vendidos? <input type="text" id="input_qtd_macaron"> Preço por unidade: <input type="text" id="input_preco_macaron"><br><br>
+    
+    Quantidade de Brigadeiros a serem vendidos? <input type="text" id="input_qtd_brigadeiro"> Preço por unidade: <input type="text" id="input_preco_brigadeiro"><br><br>
+
+    Quantidade de Cupcakes a serem vendidos? <input type="text" id="input_qtd_cupcake"> Preço por unidade: <input type="text" id="input_preco_cupcake"><br><br>
+
+    Quantidade de Cheesecakes a serem vendidos? <input type="text" id="input_qtd_cheesecake"> Preço por unidade: <input type="text" id="input_preco_cheesecake"><br><br>
+    <br>
+    <button onclick="verificarVendas()">Verificar Vendas</button>
+    <br><br>
+
+    <div id="exibir_extrato" style="">
+        
+    </div>
+</body>
+</html>
+
+<script>
+    function verificarVendas() {
+        exibir_extrato.innerHTML = "";
+        
+        // Macaron
+         var qtd_macaron = Number(input_qtd_macaron.value);
+         var preco_macaron = Number(input_preco_macaron.value);
+
+        //  Brigadeiro
+         var qtd_brigadeiro = Number(input_qtd_brigadeiro.value);
+         var preco_brigadeiro = Number(input_preco_brigadeiro.value);
+
+        //  Cupcake
+         var qtd_cupcake = Number(input_qtd_cupcake.value);
+         var preco_cupcake = Number(input_preco_cupcake.value);
+
+        //  Cheesecake
+         var qtd_cheesecake = Number(input_qtd_cheesecake.value);
+         var preco_cheesecake = Number(input_preco_cheesecake.value);
+
+         // Variaveis com as imagens
+         var macaron = `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9bVq1SIgKMOeks4LzNEJ_HHhwkGrb-Y3rxg&usqp=CAU" alt="macaron" style="width: 100px; height: 100px; border-radius: 10px">`;
+
+         var brigadeiro = `<img src="https://i.panelinha.com.br/i1/228-q-2859-brigadeiro.webp" alt="brigadeiro" style="width: 100px; height: 100px; border-radius: 10px">`
+
+         var cupcake = `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZZ0jqf4Fw0ZcvQJA2Axo6wt8aZ2ZD51znPA&usqp=CAU" alt="cupcake" style="width: 100px; height: 100px; border-radius: 10px">`
+
+         var cheesecake = `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXLYwszfGce24GpVCrsOiC3bwooYWYB2UbsQ&usqp=CAU" alt="cheesecake" style="width: 100px; height: 100px; border-radius: 10px">`
+
+        //  Variaveis de calculo
+        var totalVenda = preco_macaron * qtd_macaron + preco_brigadeiro * qtd_brigadeiro + preco_cupcake * qtd_cupcake + preco_cheesecake * qtd_cheesecake;
+
+
+         if (qtd_macaron < 0 || preco_macaron < 0 ||
+         qtd_brigadeiro < 0 || preco_brigadeiro < 0 ||
+         qtd_cupcake < 0 || preco_cupcake < 0 ||
+         qtd_cheesecake < 0 || preco_cheesecake < 0) {
+            
+            exibir_extrato.innerHTML = `<span style="color: red; font-size: 20px;">Valores inseridos não podem ser negativos. Insira valores igual ou maior que 0 (zero)</span>`
+
+         }else{
+
+            var contador = 1;
+            var venda = 1;
+
+            if (qtd_macaron > 0) {
+                
+                while (contador <= qtd_macaron) {
+
+                    exibir_extrato.innerHTML += `<span style="display: flex; align-items: center;">Venda ${venda} - ${macaron} - R$${preco_macaron} </span> <br><br>`;
+
+                    contador ++;
+                    venda++
+
+                }
+
+                contador = 1
+
+            }
+
+            if (qtd_brigadeiro > 0) {
+                
+                while (contador <= qtd_brigadeiro) {
+                    
+                    exibir_extrato.innerHTML += `<span style="display: flex; align-items: center;">Venda ${venda} - ${brigadeiro} - R$${preco_brigadeiro}</span> <br><br>`;
+
+                    contador++;
+                    venda++;
+                }
+
+                contador = 1
+            }
+
+            if (qtd_cupcake > 0 ) {
+                
+                while (contador <= qtd_cupcake) {
+                    
+                    exibir_extrato.innerHTML += `<span style="display: flex; align-items: center;">Venda ${venda} - ${cupcake} - R$${preco_cupcake}</span> <br><br>`;
+
+                    contador++;
+                    venda++;
+                }
+
+                contador = 1
+            }
+
+            if (qtd_cheesecake > 0) {
+                
+                while (contador <= qtd_cheesecake) {
+                    
+                    exibir_extrato.innerHTML += `<span style="display: flex; align-items: center;">Venda ${venda} - ${cheesecake} - R$${preco_cheesecake}</span><br><br>`;
+
+                    contador++;
+                    venda++;
+                }
+            }
+
+            exibir_extrato.innerHTML += `<br><br>
+            <span style="color: black; font-size: 20px;">Com a quantidade de ${qtd_macaron} Macarons, ${qtd_brigadeiro} Brigadeiros, ${qtd_cupcake} Cupcakes e ${qtd_cheesecake} Cheesecake, a venda totalizará R$${totalVenda} </span>`
+         }
+    }
+</script>
